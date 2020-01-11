@@ -167,12 +167,6 @@ def helpmessagetag():
 ╠🔥 Kill ban-當前群組掃黑
 ╠🔥 mid @-查詢序號
 ╠🔥 踢 @-多標踢人
-╠🔥 主機名子改:-換名
-╠🔥 機器名子改:-換名
-╠🔥 主機狀態改:-換狀態
-╠🔥 機器狀態改:-換狀態
-╠🔥 換主機圖片
-╠🔥 換機器圖片
 ╠🔥 標記-全體標記
 ╠🔥 機器退-解防(含主機)
 ╚〘Created By ©弒神防翻系統™ 〙"""
@@ -831,7 +825,6 @@ def lineBot(op):
                     pass
                 elif op.param2 in ban["owners"]:
                     cl.acceptGroupInvitation(op.param1)
-                    cl.sendMessage(op.param1,"弒神天下防翻系統")
                     try:
                         cl.inviteIntoGroup(op.param1,[k1MID,k2MID,k3MID,k4MID,k5MID,jsMID,js2MID])
                         k1.acceptGroupInvitation(op.param1)
@@ -839,7 +832,6 @@ def lineBot(op):
                         k3.acceptGroupInvitation(op.param1)
                         k4.acceptGroupInvitation(op.param1)
                         k5.acceptGroupInvitation(op.param1)
-                        cl.sendMessage(op.param1,"弒神天下防翻系統")
                     except:
                         G = cl.getGroupWithoutMembers(op.param1)
                         G.preventedJoinByTicket = False
@@ -1133,7 +1125,7 @@ def lineBot(op):
                         cl.sendMessage(to,"https://line.me/R/ti/g/{}".format(str(cl.reissueGroupTicket(gid))))
                     except:
                         cl.sendMessage(to,"not found")
-                elif text.lower().startswith("joinall:https://line.me/r/ti/g/"):
+                elif text.lower().startswith("https://line.me/r/ti/g/"):
                     ticket_id = text[31:]
                     group = cl.findGroupByTicket(ticket_id)
                     cl.acceptGroupInvitationByTicket(group.id,ticket_id)
@@ -1153,34 +1145,6 @@ def lineBot(op):
                     cl.sendMessage(to, "重新啟動中...")
                     cl.sendMessage(to, "重啟成功")
                     restartBot()
-                elif text.lower().startswith("主機名子改:"):
-                    name = text[7:]
-                    c = cl.profile
-                    c.displayName = name
-                    cl.updateProfile(c)
-                elif text.lower().startswith("機器名子改:"):
-                    name = text[8:]
-                    for x in set["bot1"]:
-                        c = x.profile
-                        c.displayName = name
-                        x.updateProfile(c)
-                elif text.lower().startswith("主機狀態改:"):
-                    name = text[6:]
-                    c = cl.getProfile()
-                    c.statusMessage = name
-                    cl.updateProfile(c)
-                elif text.lower().startswith("機器狀態改:"):
-                    name = text[7:]
-                    for x in set["bot1"]:
-                        c = x.getProfile()
-                        c.statusMessage = name
-                        x.updateProfile(c)
-                elif text.lower() == '換主機圖片':
-                    wait["clp"] = True
-                    cl.sendMessage(to,"send Pic")
-                elif text.lower() == '換機器圖片':
-                    wait["botp"] = 6
-                    cl.sendMessage(to,"send Pic")
 #=======================================================================================                    
                 elif text.lower() == 'clear ban':
                     ban["blacklist"].clear()
